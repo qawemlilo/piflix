@@ -1,6 +1,7 @@
 
 const {remote} = require('electron');
 const dialog = remote.dialog;
+const ipcRenderer = remote.ipcRenderer;
 const mainWindow = remote.getCurrentWindow();
 const settings = require('electron-settings');
 const SettingsController = require('../controllers/SettingsController');
@@ -133,34 +134,7 @@ module.exports.default = {
     },
 
     openAppDirectory () {
-      const opts = process.platform === 'darwin'
-        ? {
-          title: 'Select default video app',
-          properties: ['openFile'],
-          defaultPath: "/Applications"
-        }
-        : {
-          title: 'Select default video app',
-          properties: ['openFile'],
-          defaultPath: "/Applications"
-        }
-
-      const selectedPath = dialog.showOpenDialogSync(mainWindow, opts);
-
-      if (selectedPath) {
-        let appStr = '';
-        this.loading = true;
-
-        if (selectedPath instanceof Array) {
-          appStr = selectedPath[0];
-        }
-        else {
-          appStr = selectedPath;
-        }
-
-        this.appDir = appStr;
-        SettingsController.saveAppDir(appStr);
-      }
+      ipcRenderer.send('openAppDirectory')
     }
   },
 

@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, shell } = require('electron');
+const { app, BrowserWindow, Menu, shell, dialog} = require('electron');
 const path = require('path');
 const {IS_PRODUCTION, APP_ICON} = require('./config');
 //const appUpdater = require('update-electron-app');
@@ -70,6 +70,9 @@ const createWindow = () => {
     mainWindow.send('fullscreenChanged', false)
   });
 
+
+  mainWindow.on('openAppDirectory', openAppDirectory);
+
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
 
@@ -108,3 +111,33 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+
+function openAppDirectory () {
+  const opts = process.platform === 'darwin'
+    ? {
+      title: 'Select default video app',
+      properties: ['openFile', 'openDirectory', 'multiSelections']
+    }
+    : {
+      title: 'Select default video app',
+      properties: ['openFile']
+    }
+
+  const selectedPath = dialog.showOpenDialogSync(mainWindow, opts);
+
+  if (selectedPath) {
+    let appStr = '';
+    this.loading = true;
+
+    if (selectedPath instanceof Array) {
+      appStr = selectedPath[0];
+    }
+    else {
+      appStr = selectedPath;
+    }
+
+    this.appDir = appStr;
+    SettingsController.saveAppDir(appStr);
+  }
+}
