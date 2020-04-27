@@ -1,0 +1,88 @@
+{
+  "name": "piflix",
+  "productName": "PiFlix",
+  "version": "0.1.0",
+  "description": "Interface for watching movies on your harddrive",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
+    "postinstall": "install-app-deps",
+    "icons": "./node_modules/.bin/electron-icon-maker --input=$PWD/static/tv-icon.png --output=./"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Qawelesizwe Mlilo",
+    "email": "qawemlilo@gmail.com"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "static/icon",
+        "appId": "com.piflix.piflix",
+        "appCategoryType": "public.app-category.utilities",
+        "productName": "PiFlix",
+        "background": "static/bg.png"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "pi_movies"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {
+            "format": "ULFO",
+            "background": "static/bg.png",
+            "overwrite": true
+          },
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin",
+            "linux"
+          ]
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "electron-log": "^4.1.1",
+    "electron-settings": "^3.2.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "knex": "^0.20.13",
+    "moviedb": "^0.2.10",
+    "oleoo": "^1.0.8",
+    "parse-torrent-name": "^0.5.4",
+    "sqlite3": "^4.1.1",
+    "update-electron-app": "^1.5.0",
+    "vue-infinite-loading": "^2.4.5",
+    "vue-star-rating": "^1.6.1"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "6.0.0-beta.50",
+    "@electron-forge/maker-deb": "6.0.0-beta.50",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.50",
+    "@electron-forge/maker-rpm": "6.0.0-beta.50",
+    "@electron-forge/maker-squirrel": "6.0.0-beta.50",
+    "@electron-forge/maker-zip": "6.0.0-beta.50",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.0.0-beta.50",
+    "electron": "8.1.1",
+    "electron-icon-maker": "0.0.4",
+    "mssql": "^6.2.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "pg": "^7.18.2"
+  }
+}

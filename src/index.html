@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>🎬 PiMovies</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/fontawesome/css/all.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <script defer src="assets/libs/vue.min.js"></script>
+    <script defer src="assets/libs/vue-router.js"></script>
+    <script defer src="render.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="body col-12">
+        <div id="main-menu" class="main-menu smallscreen fixed-top" v-if="$route.name != 'welcome'">
+          <div class="row">
+            <div class="col-8">
+              <main-menu></main-menu>
+            </div>
+            <div class="col-4 text-right">
+              <settings-menu></settings-menu>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-content">
+          <transition name="fade" mode="out-in">
+            <router-view></router-view>
+          </transition>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

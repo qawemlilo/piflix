@@ -1,0 +1,178 @@
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: auto;
+  background-color: #181818;
+  color: #fff;
+}
+
+#main-menu {
+  -webkit-app-region: drag;
+  background-color: #212121;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.appModal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  transition: transform 500ms;
+  z-index: 9999;
+}
+
+.appModal .content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="button"]:focus,
+button:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+select:focus,
+select:active,
+select.active,
+select.active:focus,
+.active:focus,
+.btn-primary.focus,
+.btn-primary:focus,
+.btn:focus {
+  border-color: none;
+  box-shadow: none;
+  outline: 0 none;
+}
+
+.btn-success:not(:disabled):not(.disabled).active:focus, .btn-success:not(:disabled):not(.disabled):active:focus, .show>.btn-success.dropdown-toggle:focus {
+  border-color: none;
+  box-shadow: none;
+  outline: 0 none;
+}
+
+
+.main-menu.smallscreen {
+  padding-top:35px;
+  height: 80px!important;
+}
+
+.main-content {
+  margin-top: 90px;
+}
+
+.main-content.fullscreen {
+  margin-top: 60px;
+}
+
+.settings-menu {
+  margin-right: 1rem;
+}
+
+.settings-menu .list-inline-item {
+  margin-top: .5rem;
+}
+
+.nav-item .router-link-active {
+  border-bottom: 4px solid #007bff;
+ }
+
+.card {
+  color: #333;
+}
+
+.movie {
+  cursor: pointer;
+  transition: transform 500ms;
+}
+
+.movie .movie-title {
+  font-size: .9rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.movie .card {
+  transition: transform 500ms;
+}
+
+.movie .card:focus,
+.movie .card:hover {
+  transform: scale(1.5);
+  z-index: 9998;
+}
+
+.card .card-img-overlay {
+  padding: .5rem;
+  background-color: #000;
+  opacity: 0;
+}
+
+.card:focus .card-img-overlay, .card:hover .card-img-overlay {
+  background-color: #000;
+  opacity: .3;
+}
+
+.movie-year {
+  font-size: .8rem;
+}
+
+.link-style {
+  display: block;
+  padding: .5rem 1rem;
+}
+
+form.settings input {
+  border: 0;
+  border-bottom: 1px dotted rgb(134, 134, 134);
+}
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s ease;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+.child-view {
+  position: absolute;
+  transition: all .5s cubic-bezier(.55,0,.1,1);
+}
+.slide-left-enter, .slide-right-leave-active {
+  opacity: 0;
+  -webkit-transform: translate(30px, 0);
+  transform: translate(30px, 0);
+}
+.slide-left-leave-active, .slide-right-enter {
+  opacity: 0;
+  -webkit-transform: translate(-30px, 0);
+  transform: translate(-30px, 0);
+}
