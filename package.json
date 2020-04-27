@@ -11,7 +11,7 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\"",
     "postinstall": "install-app-deps",
-    "icons": "./node_modules/.bin/electron-icon-maker --input=$PWD/static/tv-icon.png --output=./"
+    "icons": "./node_modules/.bin/electron-icon-maker --input=$PWD/static/icon.png --output=./"
   },
   "keywords": [],
   "author": {
@@ -26,7 +26,7 @@
         "appId": "com.piflix.piflix",
         "appCategoryType": "public.app-category.utilities",
         "productName": "PiFlix",
-        "background": "static/bg.png"
+        "background": "static/background.png"
       },
       "makers": [
         {

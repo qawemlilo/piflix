@@ -1,7 +1,8 @@
 const { app, BrowserWindow, Menu, shell } = require('electron');
 const path = require('path');
 const {IS_PRODUCTION, APP_ICON} = require('./config');
-const crashReporter = require('update-electron-app');
+//const appUpdater = require('update-electron-app');
+const crashReporter = require('./crush-reporter');
 const helper = require('./helpers');
 const log = require('electron-log');
 
@@ -88,11 +89,7 @@ app.on('ready', createWindow);
 
 
 app.once('will-finish-launching', function () {
-  crashReporter({
-    repo: 'qawemlilo/piflix',
-    updateInterval: '1 hour',
-    logger: log
-  })
+  crashReporter.init();
 });
 
 // Quit when all windows are closed.
