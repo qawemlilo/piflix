@@ -3,6 +3,7 @@ const settings = require('electron-settings');
 const MoviesController = require('../controllers/MoviesController');
 const { STORAGE_ROOT } = require('../config');
 const InfiniteLoading = require('vue-infinite-loading').default;
+const path = require('path');
 const template = `
 <div id="moviesShell">
   <div class="row">
@@ -46,6 +47,9 @@ module.exports.default = {
 
   methods: {
     getPoster(poster) {
+      if (!poster) {
+        return path.resolve(__dirname,'..','assets/images/placeholder.jpg');
+      }
       return `${STORAGE_ROOT}${poster}`;
     },
 

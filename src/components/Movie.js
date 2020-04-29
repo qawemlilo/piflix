@@ -4,6 +4,7 @@ const PlayerController = require('../controllers/PlayerController');
 const { STORAGE_ROOT } = require('../config');
 const StarRating = require('vue-star-rating').default;
 const log = require('electron-log');
+const path = require('path');
 
 Object.assign(console, log.functions);
 
@@ -73,7 +74,9 @@ module.exports.default = {
 
   methods: {
     getPoster(poster) {
-      if (!poster) return '';
+      if (!poster) {
+        return path.resolve(__dirname,'..','assets/images/placeholder.jpg');
+      }
       return `${STORAGE_ROOT}${poster}`;
     },
 

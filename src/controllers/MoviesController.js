@@ -43,7 +43,9 @@ const Controller =  {
       responseType: 'stream'
     });
 
-    return response.data.pipe(fs.createWriteStream(STORAGE_ROOT + url))
+    const newLoacation = path.join(STORAGE_ROOT, url);
+
+    return response.data.pipe(fs.createWriteStream(newLoacation))
   },
 
 
@@ -89,28 +91,37 @@ const Controller =  {
       video_path: videopath
     };
 
-    let saved = await Movie.save(props);
+    await Movie.save(props);
 
-    return await this.downloadPoster(firstMovie.poster_path);
+    return this.downloadPoster(firstMovie.poster_path);
   },
 
 
   async loadMovies(folder, moviedbKey) {
+    console.log('loading movies in: ', folder);
+
     const files = await fs.promises.readdir(folder);
 
     for (let file of files) {
-      let fullPath = path.join(folder, file);
+      try {
+        let fullPath = path.join(folder, file);
 
-      if (fs.lstatSync(fullPath).isDirectory()) {
-        await this.loadMovies(fullPath);
-      };
+        if (fs.lstatSync(fullPath).isDirectory()) {
+          console.log('new dir: ', fullPath)
+          await this.loadMovies(fullPath);
+        };
 
-      if (isMovie(file)) {
-        let matches = await this.search(file, moviedbKey);
+        if (isMovie(file)) {
+          console.log('loading: ', file)
+          let matches = await this.search(file, moviedbKey);
 
-        if (matches && matches.length) {
-          await this.saveMovie(matches, fullPath);
+          if (matches && matches.length) {
+            await this.saveMovie(matches, fullPath);
+          }
         }
+      }
+      catch(e) {
+        console.error(e)
       }
     }
 

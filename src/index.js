@@ -73,7 +73,7 @@ const createWindow = () => {
 
   mainWindow.on('openAppDirectory', openAppDirectory);
 
-  mainWindow.once('ready-to-show', () => {
+  mainWindow.webContents.on('did-finish-load', function() {
     mainWindow.show();
 
     if (!IS_PRODUCTION) {
