@@ -41,7 +41,7 @@ module.exports.default = {
         <option>Select</option>
         <option value="vlc">VLC</option>
         <option value="quicktime">QuickTime Player</option>
-        <!-- <option value="builtin">Built-in HTML5 Player</option> -->
+        <option value="builtin">Built-in HTML5 Player</option>
       </select>
     </div>
   </div>

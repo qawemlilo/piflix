@@ -30,7 +30,6 @@ async function runMigrations() {
   }
 }
 
-
 runMigrations();
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.

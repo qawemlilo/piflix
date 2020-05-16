@@ -5,6 +5,7 @@ const { STORAGE_ROOT } = require('../config');
 const StarRating = require('vue-star-rating').default;
 const log = require('electron-log');
 const path = require('path');
+const settings = require('electron-settings');
 
 Object.assign(console, log.functions);
 
@@ -87,7 +88,14 @@ module.exports.default = {
         });
       }
 
-      PlayerController.play(file);
+      const defaultPlayer = settings.get('defaultPlayer');
+
+      if (defaultPlayer === 'builtin') {
+        this.$eventBus.$emit('play-movie', 'file://' + this.movie.video_path);
+      }
+      else {
+        PlayerController.play(file);
+      }
     },
 
     async watchLater() {
